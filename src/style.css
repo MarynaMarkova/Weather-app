@@ -25,8 +25,24 @@ h3 {
 }
 .icon-top {
   font-size: 5rem;
-  color: rgb(245, 204, 68);
+  color: rgb(245, 197, 66);
 }
 
 .forecast {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.icon-small {
+  font-size: 40px;
+  margin: 10px auto;
+}
+
+.cloud {
+  color: grey;
+}
+
+.sun {
+  color: rgb(245, 197, 66);
 }
