@@ -1,6 +1,6 @@
 body {
   background: linear-gradient(
-    65.5deg,
+    270deg,
     rgb(23, 205, 205) -15.1%,
     rgb(23, 25, 95) 71.5%
   );
@@ -18,4 +18,15 @@ h2 {
 
 h3 {
   font-size: 2.75rem;
+}
+
+.heading {
+  margin-top: 40px;
+}
+.icon-top {
+  font-size: 5rem;
+  color: rgb(245, 204, 68);
+}
+
+.forecast {
 }
