@@ -31,7 +31,7 @@ h3 {
   margin-top: 40px;
 }
 
-.weather-icon {
+.weather-icon-big {
   position: relative;
   top: -8px;
 }
@@ -40,6 +40,7 @@ h3 {
   font-size: 28px;
   position: relative;
   top: -36px;
+  text-decoration: none;
 }
 
 ul {
@@ -53,4 +54,24 @@ ul {
   margin-top: 100px;
   text-align: center;
   font-size: 20px;
+}
+
+.day-temp {
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.night-temp {
+  font-weight: 100;
+}
+
+.units-farenheit {
+  position: relative;
+  left: -15px;
+  font-size: 28px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
