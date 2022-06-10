@@ -13,7 +13,7 @@ h3 {
 }
 
 h2 {
-  font-size: 5rem;
+  font-size: 5.2rem;
 }
 
 h3 {
@@ -31,21 +31,26 @@ h3 {
   margin-top: 40px;
 }
 
+.weather-icon {
+  position: relative;
+  top: -8px;
+}
+
+.units-big {
+  font-size: 28px;
+  position: relative;
+  top: -36px;
+}
+
+ul {
+  margin: 50px auto;
+  list-style: none;
+  font-size: 30px;
+  font-weight: lighter;
+  text-align: center;
+}
 .forecast {
   margin-top: 100px;
   text-align: center;
   font-size: 20px;
-}
-
-.icon-small {
-  font-size: 40px;
-  margin: 10px auto;
-}
-
-.cloud {
-  color: grey;
-}
-
-.sun {
-  color: rgb(245, 197, 66);
 }
