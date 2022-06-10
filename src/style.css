@@ -23,16 +23,12 @@ h3 {
 .weather-app {
   border: 1px solid white;
   padding: 25px;
-  margin: 20px;
-  border-radius: 8px;
+  margin: 20px auto;
+  border-radius: 10px;
   max-width: 900px;
 }
 .heading {
   margin-top: 40px;
-}
-.icon-top {
-  font-size: 5rem;
-  color: rgb(245, 197, 66);
 }
 
 .forecast {
