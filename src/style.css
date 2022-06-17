@@ -31,6 +31,14 @@ h3 {
   margin-top: 50px;
 }
 
+ul {
+  margin: 20px auto;
+  list-style: none;
+  font-size: 30px;
+  font-weight: lighter;
+  text-align: center;
+}
+
 .weather-icon-big {
   position: relative;
   top: -8px;
@@ -44,13 +52,6 @@ h3 {
   text-decoration: none;
 }
 
-ul {
-  margin: 20px auto;
-  list-style: none;
-  font-size: 30px;
-  font-weight: lighter;
-  text-align: center;
-}
 .forecast {
   margin-top: 100px;
   text-align: center;
