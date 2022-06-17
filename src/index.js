@@ -21,5 +21,18 @@ let weather = {
   },
 };
 
-alert("hi");
-// write your code here
+let city = prompt("Enter a city");
+city = city.toLocaleLowerCase().trim();
+
+if (city === "paris")
+  alert(
+    `It is currently ${Math.round(weather.paris.temp)}°C (${Math.round(
+      weather.paris.temp * 1.8 + 32
+    )}°F) in ${
+      city.charAt(0).toUpperCase() + city.slice(1)
+    } with a humidity of ${weather.paris.humidity}%`
+  );
+
+alert(
+  `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+sydney`
+);
