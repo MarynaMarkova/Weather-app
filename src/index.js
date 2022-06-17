@@ -24,47 +24,15 @@ let weather = {
 let city = prompt("Enter a city");
 city = city.toLowerCase().trim();
 
-if (city === "paris") {
+if (weather[city] !== undefined) {
+  let temperature = weather[city]["temp"];
+  let tempCelsius = Math.round(temperature);
+  let tempFahrenheit = Math.round(weather[city]["temp"] * 1.8 + 32);
+  let humidity = weather[city]["humidity"];
+  let cityCapitalLetter = city.charAt(0).toUpperCase() + city.slice(1);
+
   alert(
-    `It is currently ${Math.round(weather.paris.temp)}°C (${Math.round(
-      weather.paris.temp * 1.8 + 32
-    )}°F) in ${
-      city.charAt(0).toUpperCase() + city.slice(1)
-    } with a humidity of ${weather.paris.humidity}%`
-  );
-} else if (city === "tokyo" || city === "tokio") {
-  alert(
-    `It is currently ${Math.round(weather.tokyo.temp)}°C (${Math.round(
-      weather.tokyo.temp * 1.8 + 32
-    )}°F) in ${
-      city.charAt(0).toUpperCase() + city.slice(1)
-    } with a humidity of ${weather.tokyo.humidity}%`
-  );
-} else if (city === "lisbon") {
-  alert(
-    `It is currently ${Math.round(weather.lisbon.temp)}°C (${Math.round(
-      weather.lisbon.temp * 1.8 + 32
-    )}°F) in ${
-      city.charAt(0).toUpperCase() + city.slice(1)
-    } with a humidity of ${weather.lisbon.humidity}%`
-  );
-} else if (city === "san francisco" || city === "san-francisco") {
-  alert(
-    `It is currently ${Math.round(
-      weather["san francisco"]["temp"]
-    )}°C (${Math.round(
-      weather["san francisco"]["temp"] * 1.8 + 32
-    )}°F) in San Francisco with a humidity of ${
-      weather["san francisco"]["humidity"]
-    }%`
-  );
-} else if (city === "oslo") {
-  alert(
-    `It is currently ${Math.round(weather.oslo.temp)}°C (${Math.round(
-      weather.oslo.temp * 1.8 + 32
-    )}°F) in ${
-      city.charAt(0).toUpperCase() + city.slice(1)
-    } with a humidity of ${weather.oslo.humidity}%`
+    `It is currently ${tempCelsius}°C (${tempFahrenheit}°F) in ${cityCapitalLetter} with a humidity of ${humidity}%`
   );
 } else {
   alert(
