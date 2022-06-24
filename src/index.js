@@ -8,7 +8,13 @@ let minutesPlace = document.querySelector("#minutes");
 
 let date = now.getDate();
 let hours = now.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
 let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 
 let days = [
   "Sunday",
@@ -64,18 +70,19 @@ function farenheitTemp(event) {
   event.preventDefault();
 
   let tempBig = document.querySelector("#tremperature-big");
+
   tempBig.innerHTML = `66`;
 }
 
 farenheit.addEventListener("click", farenheitTemp);
 
-let celcium = document.querySelector("#units-celcium");
+let celcius = document.querySelector("#units-celcius");
 
-function celciumTemp(event) {
+function celciusTemp(event) {
   event.preventDefault();
 
   let tempBig = document.querySelector("#tremperature-big");
   tempBig.innerHTML = `19`;
 }
 
-celcium.addEventListener("click", celciumTemp);
+celcius.addEventListener("click", celciusTemp);
