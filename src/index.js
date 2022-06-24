@@ -54,7 +54,17 @@ function search(event) {
   if (searchInput.value) {
     h1.innerHTML = `${searchInput.value}`;
   } else {
-    h2.innerHTML = null;
     alert("Please type a city");
   }
 }
+
+let farenheit = document.querySelector("#units-farenheit");
+
+function farenheitTemp(event) {
+  event.preventDefault();
+
+  let tempBig = document.querySelector("#tremperature-big");
+  tempBig.innerHTML = `66`;
+}
+
+farenheit.addEventListener("click", farenheitTemp);
