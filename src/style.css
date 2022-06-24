@@ -71,7 +71,7 @@ ul {
   font-weight: 100;
 }
 
-.units-farenheit {
+#units-farenheit {
   position: relative;
   left: -15px;
   font-size: 28px;
