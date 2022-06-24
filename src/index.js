@@ -42,3 +42,19 @@ datePlace.innerHTML = `${date}`;
 monthPlace.innerHTML = `${month}`;
 hoursPlace.innerHTML = `${hours}`;
 minutesPlace.innerHTML = `${minutes}`;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
+
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#cityInput");
+
+  let h1 = document.querySelector("#cityPlace");
+  if (searchInput.value) {
+    h1.innerHTML = `${searchInput.value}`;
+  } else {
+    h2.innerHTML = null;
+    alert("Please type a city");
+  }
+}
