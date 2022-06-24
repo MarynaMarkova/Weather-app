@@ -68,3 +68,14 @@ function farenheitTemp(event) {
 }
 
 farenheit.addEventListener("click", farenheitTemp);
+
+let celcium = document.querySelector("#units-celcium");
+
+function celciumTemp(event) {
+  event.preventDefault();
+
+  let tempBig = document.querySelector("#tremperature-big");
+  tempBig.innerHTML = `19`;
+}
+
+celcium.addEventListener("click", celciumTemp);
