@@ -95,5 +95,13 @@ a {
 
 #currentLocation {
   margin-top: -100px;
-  width: 150px;
+  width: 193px;
+}
+
+#details {
+  margin-top: 150px;
+}
+
+#day {
+  margin-top: 70px;
 }
