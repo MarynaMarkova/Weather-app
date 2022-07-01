@@ -23,8 +23,23 @@
     <div class="container">
       <div class="weather-app">
         <div class="row heading">
-          <div class="col-3"></div>
+      <div class="col-3">
+            
+       
+          
+          <ul id="details">
+            <li>
+              Feels like: <span id = "feels">18</span> ºC
+            </li>
+            <li>
+              Humidity: <span id = "humidity">77</span>  %
+            </li>
+            <li>
+              Wind: <span id = "wind">3</span>  km/h
 
+            </li>
+          </ul>
+             </div>
           <div class="col-6">
             <h1 id="cityPlace">Truskavets</h1>
             <h2>
@@ -35,8 +50,8 @@
                
               />
 
-              <span id ="tremperature-big">19</span
-              ><span class="units-big">° <a href="#" id="units-celcius">C</a></span><a href="#" id="units-farenheit">F</a></span>
+              <span id ="temperature-big">19</span
+              ><span class="units-big"> º<a href="#" id="units-celcius">C</a></span><a href="#" id="units-farenheit">F</a></span>
             </h2>
             <h3>sunny</h3>
           </div>
@@ -48,7 +63,7 @@
                   type="search"
                   class="form-control search-block"
                   id="cityInput"
-                  placeholder="Enter your city"
+                  placeholder="Enter a city"
                   autofocus="on"
                 />
 
@@ -56,11 +71,14 @@
               </div>
             </form>
 
+            <button type="button" class="btn btn-success" id="currentLocation">Current</button>
+
             <br />
 
-            <ul>
+            <ul id = "fullDate">
               <li id="day">Friday</li>
-              <li><span id="date">09</span> of <span id="month">month</span></li>
+              <li><span id="date">09</span> of <span
+                id="month">month</span></li>
               <li ><span id="hours">14</span>:<span id="minutes">27</span></li>
             </ul>
           </div>

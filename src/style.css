@@ -24,6 +24,14 @@ h3 {
   font-size: 2.75rem;
 }
 
+ul {
+  margin: 80px auto 0 auto;
+  list-style: none;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
 .weather-app {
   border: 1px solid white;
   padding: 25px;
@@ -33,14 +41,6 @@ h3 {
 }
 .heading {
   margin-top: 50px;
-}
-
-ul {
-  margin: -30px auto;
-  list-style: none;
-  font-size: 30px;
-  font-weight: lighter;
-  text-align: center;
 }
 
 .weather-icon-big {
@@ -91,4 +91,27 @@ a {
 
 .search-block {
   width: 150px;
+}
+
+#currentLocation {
+  margin-top: -100px;
+  width: 193px;
+}
+
+#details {
+  margin-top: 210px;
+}
+
+#day {
+  margin-top: 130px;
+}
+
+#feels,
+#humidity,
+#wind,
+#date,
+#month,
+#hours,
+#minutes {
+  font-weight: bolder;
 }
