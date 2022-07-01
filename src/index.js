@@ -74,7 +74,7 @@ celcius.addEventListener("click", celciusTemp);
 
 // City search
 
-// city search
+let city = `Truskavets`;
 
 function search(event) {
   event.preventDefault();
@@ -90,20 +90,22 @@ function search(event) {
     cityPlace.innerHTML = null;
     alert(`Please type a city`);
   }
-
-  let apiKey = `09de8678225621c95e40390774879e02`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-  function displayWeather(response) {
-    //let weatherDiv = document.querySelector("#weather");
-    //let temperature = Math.round(response.data.main.temp);
-    //let description = response.data.weather[0].description;
-
-    console.log(response.data);
-    //weatherDiv.innerHTML = `It is ${temperature} degrees, ${description}, in ${response.data.name}`;
-  }
-
-  axios.get(apiUrl).then(displayWeather);
 }
+
+let apiKey = `09de8678225621c95e40390774879e02`;
+
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+function displayWeather(response) {
+  let weatherTemperature = document.querySelector("#tremperature-big");
+  let temperature = Math.round(response.data.main.temp);
+  //let description = response.data.weather[0].description;
+
+  console.log(temperature);
+  weatherTemperature.innerHTML = temperature;
+}
+
+axios.get(apiUrl).then(displayWeather);
+
 let form = document.querySelector(`#search-form`);
 form.addEventListener("submit", search);
