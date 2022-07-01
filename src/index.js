@@ -49,21 +49,6 @@ monthPlace.innerHTML = `${month}`;
 hoursPlace.innerHTML = `${hours}`;
 minutesPlace.innerHTML = `${minutes}`;
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
-
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#cityInput");
-
-  let h1 = document.querySelector("#cityPlace");
-  if (searchInput.value) {
-    h1.innerHTML = `${searchInput.value}`;
-  } else {
-    alert("Please type a city");
-  }
-}
-
 let farenheit = document.querySelector("#units-farenheit");
 
 function farenheitTemp(event) {
@@ -86,3 +71,39 @@ function celciusTemp(event) {
 }
 
 celcius.addEventListener("click", celciusTemp);
+
+// City search
+
+// city search
+
+function search(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#cityInput");
+  let city = cityInput.value;
+  city = city[0].toUpperCase() + city.substring(1);
+
+  let cityPlace = document.querySelector(`#cityPlace`);
+  if (city) {
+    cityPlace.innerHTML = city;
+    return city;
+  } else {
+    cityPlace.innerHTML = null;
+    alert(`Please type a city`);
+  }
+
+  let apiKey = `09de8678225621c95e40390774879e02`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  function displayWeather(response) {
+    //let weatherDiv = document.querySelector("#weather");
+    //let temperature = Math.round(response.data.main.temp);
+    //let description = response.data.weather[0].description;
+
+    console.log(response.data);
+    //weatherDiv.innerHTML = `It is ${temperature} degrees, ${description}, in ${response.data.name}`;
+  }
+
+  axios.get(apiUrl).then(displayWeather);
+}
+let form = document.querySelector(`#search-form`);
+form.addEventListener("submit", search);
