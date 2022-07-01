@@ -112,34 +112,34 @@ function search(event) {
 let form = document.querySelector(`#search-form`);
 form.addEventListener("submit", search);
 
-//   // Current Location Button
+// Current Location Button
 
-//   function displayWeather(response) {
-//     let weatherTemperature = document.querySelector("#tremperature-big");
-//     let temperature = Math.round(response.data.main.temp);
-//     //let description = response.data.weather[0].description;
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
 
-//     console.log(temperature);
-//     weatherTemperature.innerHTML = temperature;
-//   }
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
 
-//   function getCurrentPosition() {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   }
+  let apiKey = `09de8678225621c95e40390774879e02`;
 
-//   function showPosition(position) {
-//     let h1 = document.querySelector("h1");
-//     let lat = position.coords.latitude;
-//     let lon = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
-//     h1.innerHTML = `Your Latitude is ${lat} and your longitude is ${lon}`;
+  axios.get(apiUrl).then(displayWeather);
+}
 
-//     let apiKey = `09de8678225621c95e40390774879e02`;
+function displayWeather(response) {
+  let weatherTemperature = document.querySelector("#tremperature-big");
+  let temperature = Math.round(response.data.main.temp);
+  //     //let description = response.data.weather[0].description;
+  let city = response.data.name;
 
-//     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=lat={lat}&lon={lon}&appid=${apiKey}&units=metric`;
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = city;
+  console.log(city);
+  weatherTemperature.innerHTML = temperature;
+}
 
-//     axios.get(apiUrl).then(displayWeather);
-//   }
-
-// let currentButton = document.querySelector("#currentLocation");
-// currentButton.addEventListener("click", getCurrentPosition);
+let currentButton = document.querySelector("#currentLocation");
+currentButton.addEventListener("click", getCurrentPosition);
