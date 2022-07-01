@@ -86,7 +86,7 @@ function search(event) {
     city = city[0].toUpperCase() + city.substring(1);
     cityPlace.innerHTML = city;
   } else {
-    cityPlace.innerHTML = null;
+    city = `Truskavets`;
     alert(`Please type a city`);
   }
   let apiKey = `09de8678225621c95e40390774879e02`;
