@@ -82,9 +82,18 @@ function displayWeather(response) {
     response.data.main.temp
   );
 
-  //   //let description = response.data.weather[0].description;
+  document.querySelector("#feels").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
+
+  document.querySelector("#humidity").innerHTML = Math.round(
+    response.data.main.humidity
+  );
+
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
   console.log(response.data);
-  //   weatherTemperature.innerHTML = temperature;
 }
 
 function search(event) {
