@@ -75,6 +75,7 @@ function celciusTemp(event) {
 celcius.addEventListener("click", celciusTemp);
 
 // City search
+// Get current temperature
 
 function displayWeather(response) {
   document.querySelector("#cityPlace").innerHTML = response.data.name;
@@ -96,54 +97,41 @@ function displayWeather(response) {
 
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
-  console.log(response.data);
 }
 
-function search(event) {
+function search(city) {
+  let apiKey = `09de8678225621c95e40390774879e02`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function handleSubmit(event) {
   event.preventDefault();
+  let city = document.querySelector("#cityInput").value;
+  search(city);
+}
+
+let form = document.querySelector(`#search-form`);
+form.addEventListener("submit", handleSubmit);
+
+search(`Truskavets`);
+
+// Current Location Button
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
 
   let apiKey = `09de8678225621c95e40390774879e02`;
-  let city = document.querySelector("#cityInput").value;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeather);
 }
 
-// }
-
-let form = document.querySelector(`#search-form`);
-form.addEventListener("submit", search);
-
-// // Get current temperature
-// // Current Location Button
-
-// function getCurrentPosition() {
-//   navigator.geolocation.getCurrentPosition(showPosition);
-// }
-
-// function showPosition(position) {
-//   let lat = position.coords.latitude;
-//   let lon = position.coords.longitude;
-
-//   let apiKey = `09de8678225621c95e40390774879e02`;
-
-//   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-//   axios.get(apiUrl).then(displayCurrentWeather);
-// }
-
-// function displayCurrentWeather(response) {
-//   let weatherTemperature = document.querySelector("#tremperature-big");
-//   let temperature = Math.round(response.data.main.temp);
-//   //     //let description = response.data.weather[0].description;
-//   let city = response.data.name;
-
-//   let h1 = document.querySelector("h1");
-//   h1.innerHTML = city;
-//   console.log(city);
-//   weatherTemperature.innerHTML = temperature;
-// }
-
-// let currentButton = document.querySelector("#currentLocation");
-// currentButton.addEventListener("click", getCurrentPosition);
+let currentButton = document.querySelector("#currentLocation");
+currentButton.addEventListener("click", getCurrentPosition);
