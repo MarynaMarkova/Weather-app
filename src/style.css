@@ -115,3 +115,12 @@ a {
 #minutes {
   font-weight: bolder;
 }
+
+#author {
+  text-align: center;
+}
+
+#gitHubLink {
+  color: lightgreen;
+  text-decoration: underline;
+}
