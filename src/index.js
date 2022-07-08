@@ -1,59 +1,3 @@
-// set time and date
-
-let now = new Date();
-
-let dayPlace = document.querySelector("#day");
-let datePlace = document.querySelector("#date");
-let monthPlace = document.querySelector("#month");
-let hoursPlace = document.querySelector("#hours");
-let minutesPlace = document.querySelector("#minutes");
-
-let date = now.getDate();
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let month = months[now.getMonth()];
-
-dayPlace.innerHTML = `${day}`;
-datePlace.innerHTML = `${date}`;
-monthPlace.innerHTML = `${month}`;
-hoursPlace.innerHTML = `${hours}`;
-minutesPlace.innerHTML = `${minutes}`;
-
-// City search
-// Get current temperature
-
 function displayWeather(response) {
   celciusTemperature = Math.round(response.data.main.temp);
 
@@ -101,11 +45,6 @@ function handleSubmit(event) {
   search(city);
 }
 
-let form = document.querySelector(`#search-form`);
-form.addEventListener("submit", handleSubmit);
-
-// Current Location Button
-
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
@@ -141,6 +80,62 @@ function celciusTemp(event) {
   document.querySelector("#temperature-big").innerHTML = celciusTemperature;
 }
 
+function actualDate() {
+  let now = new Date();
+
+  let dayPlace = document.querySelector("#day");
+  let datePlace = document.querySelector("#date");
+  let monthPlace = document.querySelector("#month");
+  let hoursPlace = document.querySelector("#hours");
+  let minutesPlace = document.querySelector("#minutes");
+
+  let date = now.getDate();
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[now.getMonth()];
+
+  dayPlace.innerHTML = `${day}`;
+  datePlace.innerHTML = `${date}`;
+  monthPlace.innerHTML = `${month}`;
+  hoursPlace.innerHTML = `${hours}`;
+  minutesPlace.innerHTML = `${minutes}`;
+}
+
+let form = document.querySelector(`#search-form`);
+form.addEventListener("submit", handleSubmit);
+
 let farenheit = document.querySelector("#units-farenheit");
 farenheit.addEventListener("click", farenheitTemp);
 
@@ -153,3 +148,4 @@ let currentButton = document.querySelector("#currentLocation");
 currentButton.addEventListener("click", getCurrentPosition);
 
 search(`Truskavets`);
+actualDate();
