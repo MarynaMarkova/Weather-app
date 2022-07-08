@@ -51,37 +51,16 @@ monthPlace.innerHTML = `${month}`;
 hoursPlace.innerHTML = `${hours}`;
 minutesPlace.innerHTML = `${minutes}`;
 
-let farenheit = document.querySelector("#units-farenheit");
-
-function farenheitTemp(event) {
-  event.preventDefault();
-
-  let tempBig = document.querySelector("#tremperature-big");
-
-  tempBig.innerHTML = `66`;
-}
-
-farenheit.addEventListener("click", farenheitTemp);
-
-let celcius = document.querySelector("#units-celcius");
-
-function celciusTemp(event) {
-  event.preventDefault();
-
-  let tempBig = document.querySelector("#tremperature-big");
-  tempBig.innerHTML = `19`;
-}
-
-celcius.addEventListener("click", celciusTemp);
-
 // City search
 // Get current temperature
 
 function displayWeather(response) {
+  celciusTemperature = Math.round(response.data.main.temp);
+
   document.querySelector("#cityPlace").innerHTML = response.data.name;
-  document.querySelector("#temperature-big").innerHTML = Math.round(
-    response.data.main.temp
-  );
+
+  document.querySelector("#temperature-big").innerHTML =
+    Math.round(celciusTemperature);
 
   document.querySelector("#feels").innerHTML = Math.round(
     response.data.main.feels_like
@@ -125,8 +104,6 @@ function handleSubmit(event) {
 let form = document.querySelector(`#search-form`);
 form.addEventListener("submit", handleSubmit);
 
-search(`Truskavets`);
-
 // Current Location Button
 
 function getCurrentPosition() {
@@ -144,5 +121,35 @@ function showPosition(position) {
   axios.get(apiUrl).then(displayWeather);
 }
 
+function farenheitTemp(event) {
+  event.preventDefault();
+
+  celcius.classList.remove(`active`);
+  farenheit.classList.add(`active`);
+
+  let farenheitTemperature = Math.round((celciusTemperature * 9) / 5 + 32);
+
+  document.querySelector("#temperature-big").innerHTML = farenheitTemperature;
+}
+
+function celciusTemp(event) {
+  event.preventDefault();
+
+  celcius.classList.add(`active`);
+  farenheit.classList.remove(`active`);
+
+  document.querySelector("#temperature-big").innerHTML = celciusTemperature;
+}
+
+let farenheit = document.querySelector("#units-farenheit");
+farenheit.addEventListener("click", farenheitTemp);
+
+let celciusTemperature = null;
+
+let celcius = document.querySelector("#units-celcius");
+celcius.addEventListener("click", celciusTemp);
+
 let currentButton = document.querySelector("#currentLocation");
 currentButton.addEventListener("click", getCurrentPosition);
+
+search(`Truskavets`);
