@@ -97,6 +97,17 @@ function displayWeather(response) {
 
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
+
+  document
+    .querySelector("#weather-icon-big")
+    .setAttribute(
+      `src`,
+      `https://www.openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+
+  document
+    .querySelector("#weather-icon-big")
+    .setAttribute(`alt`, response.data.weather[0].description);
 }
 
 function search(city) {

@@ -43,10 +43,10 @@ ul {
   margin-top: 50px;
 }
 
-.weather-icon-big {
+#weather-icon-big {
   position: relative;
   top: -8px;
-  width: 75px;
+  width: 120px;
 }
 
 .units-big {
@@ -93,6 +93,11 @@ a {
   width: 150px;
 }
 
+.profileLink {
+  color: lightgreen;
+  text-decoration: underline;
+}
+
 #currentLocation {
   margin-top: -100px;
   width: 193px;
@@ -118,9 +123,4 @@ a {
 
 #author {
   text-align: center;
-}
-
-#gitHubLink {
-  color: lightgreen;
-  text-decoration: underline;
 }
