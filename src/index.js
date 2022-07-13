@@ -133,6 +133,37 @@ function actualDate() {
   minutesPlace.innerHTML = `${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `  
+    <div class="col-2">
+    ${day}
+    <br />
+    
+    <img
+    src="/pic/rain_s_cloudy.png"
+    class="weather-icon"
+    alt="cloudy"
+    />
+    <br />
+    
+    <span class="day-temp">18° </span>
+    <span class="night-temp"> 12°</span>
+    </div>
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let form = document.querySelector(`#search-form`);
 form.addEventListener("submit", handleSubmit);
 
@@ -149,3 +180,4 @@ currentButton.addEventListener("click", getCurrentPosition);
 
 search(`Truskavets`);
 actualDate();
+displayForecast();
