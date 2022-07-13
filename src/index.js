@@ -1,3 +1,11 @@
+function getForecast(coordinates) {
+  console.log(coordinates.lon);
+  let apiKey = `aae7aa2cecdffec0f7d5a34e1b4af7fc`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayWeather(response) {
   celciusTemperature = Math.round(response.data.main.temp);
 
@@ -31,6 +39,8 @@ function displayWeather(response) {
   document
     .querySelector("#weather-icon-big")
     .setAttribute(`alt`, response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -133,30 +143,42 @@ function actualDate() {
   minutesPlace.innerHTML = `${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `  
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `  
     <div class="col-2">
-    ${day}
+    ${formatDay(forecastDay.dt)}
     <br />
     
     <img
-    src="/pic/rain_s_cloudy.png"
+    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+
     class="weather-icon"
     alt="cloudy"
     />
     <br />
     
-    <span class="day-temp">18° </span>
-    <span class="night-temp"> 12°</span>
+    <span class="day-temp">${Math.round(forecastDay.temp.max)}° </span>
+    <span class="night-temp"> ${Math.round(forecastDay.temp.min)}°</span>
     </div>
     `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -180,4 +202,3 @@ currentButton.addEventListener("click", getCurrentPosition);
 
 search(`Truskavets`);
 actualDate();
-displayForecast();
