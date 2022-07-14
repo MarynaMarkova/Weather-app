@@ -1,9 +1,23 @@
-function getForecast(coordinates) {
-  console.log(coordinates.lon);
-  let apiKey = `aae7aa2cecdffec0f7d5a34e1b4af7fc`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
-  axios.get(apiUrl).then(displayForecast);
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#cityInput").value;
+  search(city);
+}
+
+function search(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayWeather);
+}
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function displayWeather(response) {
@@ -11,8 +25,7 @@ function displayWeather(response) {
 
   document.querySelector("#cityPlace").innerHTML = response.data.name;
 
-  document.querySelector("#temperature-big").innerHTML =
-    Math.round(celciusTemperature);
+  document.querySelector("#temperature-big").innerHTML = celciusTemperature;
 
   document.querySelector("#feels").innerHTML = Math.round(
     response.data.main.feels_like
@@ -43,47 +56,73 @@ function displayWeather(response) {
   getForecast(response.data.coord);
 }
 
-function search(city) {
-  let apiKey = `09de8678225621c95e40390774879e02`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeather);
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#cityInput").value;
-  search(city);
-}
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
 
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
+  let forecastHTML = `<div class="row">`;
 
-function showPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `  
+      <div class="col-2">
+      ${formatDay(forecastDay.dt)}
+      <br />
+      
+      <img
+      src="http://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png"
+      
+      class="weather-icon"
+      alt="${forecastDay.weather[0].description}"
+      />
+      <br />
+      
+      <span class="day-temp">${Math.round(forecastDay.temp.max)}° </span>
+      <span class="night-temp"> ${Math.round(forecastDay.temp.min)}°</span>
+      </div>
+      `;
+    }
+  });
 
-  let apiKey = `09de8678225621c95e40390774879e02`;
+  forecastHTML = forecastHTML + `</div>`;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(displayWeather);
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function farenheitTemp(event) {
   event.preventDefault();
+  units = "imperial";
+
+  if (document.querySelector("#cityPlace").innerHTML === "Truskavets’") {
+    getCurrentPosition();
+  } else {
+    handleSubmit(event);
+  }
 
   celcius.classList.remove(`active`);
   farenheit.classList.add(`active`);
-
-  let farenheitTemperature = Math.round((celciusTemperature * 9) / 5 + 32);
-
-  document.querySelector("#temperature-big").innerHTML = farenheitTemperature;
 }
 
 function celciusTemp(event) {
   event.preventDefault();
 
+  units = "metric";
+
+  if (document.querySelector("#cityPlace").innerHTML === "Truskavets’") {
+    getCurrentPosition();
+  } else {
+    handleSubmit(event);
+  }
   celcius.classList.add(`active`);
   farenheit.classList.remove(`active`);
 
@@ -151,43 +190,12 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-function displayForecast(response) {
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `  
-    <div class="col-2">
-    ${formatDay(forecastDay.dt)}
-    <br />
-    
-    <img
-    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
-
-    class="weather-icon"
-    alt="cloudy"
-    />
-    <br />
-    
-    <span class="day-temp">${Math.round(forecastDay.temp.max)}° </span>
-    <span class="night-temp"> ${Math.round(forecastDay.temp.min)}°</span>
-    </div>
-    `;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-
-  forecastElement.innerHTML = forecastHTML;
-}
-
 let form = document.querySelector(`#search-form`);
 form.addEventListener("submit", handleSubmit);
+
+let units = "metric";
+
+let apiKey = `09de8678225621c95e40390774879e02`;
 
 let farenheit = document.querySelector("#units-farenheit");
 farenheit.addEventListener("click", farenheitTemp);
