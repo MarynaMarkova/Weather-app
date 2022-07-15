@@ -99,36 +99,6 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function farenheitTemp(event) {
-  event.preventDefault();
-  units = "imperial";
-
-  if (document.querySelector("#cityPlace").innerHTML === "Truskavets’") {
-    getCurrentPosition();
-  } else {
-    handleSubmit(event);
-  }
-
-  celcius.classList.remove(`active`);
-  farenheit.classList.add(`active`);
-}
-
-function celciusTemp(event) {
-  event.preventDefault();
-
-  units = "metric";
-
-  if (document.querySelector("#cityPlace").innerHTML === "Truskavets’") {
-    getCurrentPosition();
-  } else {
-    handleSubmit(event);
-  }
-  celcius.classList.add(`active`);
-  farenheit.classList.remove(`active`);
-
-  document.querySelector("#temperature-big").innerHTML = celciusTemperature;
-}
-
 function actualDate() {
   let now = new Date();
 
@@ -197,13 +167,7 @@ let units = "metric";
 
 let apiKey = `09de8678225621c95e40390774879e02`;
 
-let farenheit = document.querySelector("#units-farenheit");
-farenheit.addEventListener("click", farenheitTemp);
-
 let celciusTemperature = null;
-
-let celcius = document.querySelector("#units-celcius");
-celcius.addEventListener("click", celciusTemp);
 
 let currentButton = document.querySelector("#currentLocation");
 currentButton.addEventListener("click", getCurrentPosition);
