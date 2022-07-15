@@ -71,26 +71,6 @@ ul {
   font-weight: 100;
 }
 
-.active {
-  color: white;
-  cursor: default;
-}
-
-.active:hover {
-  color: white;
-}
-
-#units-farenheit {
-  position: relative;
-  left: -15px;
-  font-size: 28px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
 .search-block,
 .submit {
   display: inline;

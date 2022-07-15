@@ -23,35 +23,20 @@
     <div class="container">
       <div class="weather-app">
         <div class="row heading">
-      <div class="col-3">
-            
-       
-          
-          <ul id="details">
-            <li>
-              Feels like: <span id = "feels"></span>ºC
-            </li>
-            <li>
-              Humidity: <span id = "humidity"></span>%
-            </li>
-            <li>
-              Wind: <span id = "wind"></span> km/h
-
-            </li>
-          </ul>
-             </div>
+          <div class="col-3">
+            <ul id="details">
+              <li>Feels like: <span id="feels"></span>ºC</li>
+              <li>Humidity: <span id="humidity"></span>%</li>
+              <li>Wind: <span id="wind"></span> km/h</li>
+            </ul>
+          </div>
           <div class="col-6">
             <h1 id="cityPlace"></h1>
             <h2>
-              <img
-                src="/pic/sunny.png"
-                id="weather-icon-big"
-                alt="sunny"
-               
-              />
+              <img src="/pic/sunny.png" id="weather-icon-big" alt="sunny" />
 
-              <span id ="temperature-big"></span
-              ><span class="units-big">º<a href="#" id="units-celcius" class="active">C</a></span><a href="#" id="units-farenheit">F</a></span>
+              <span id="temperature-big"></span
+              ><span class="units-big">ºC</span>
             </h2>
             <h3 id="description"></h3>
           </div>
@@ -67,29 +52,41 @@
                   autofocus="on"
                 />
 
-                <input type="submit" class="submit" value="Go"/>
+                <input type="submit" class="submit" value="Go" />
               </div>
             </form>
 
-            <button type="button" class="btn btn-success" id="currentLocation">Current location</button>
+            <button type="button" class="btn btn-success" id="currentLocation">
+              Current location
+            </button>
 
             <br />
 
-            <ul id = "fullDate">
+            <ul id="fullDate">
               <li id="day"></li>
-              <li><span id="date"></span> of <span
-                id="month"></span></li>
-              <li ><span id="hours"></span>:<span id="minutes"></span></li>
+              <li><span id="date"></span> of <span id="month"></span></li>
+              <li><span id="hours"></span>:<span id="minutes"></span></li>
             </ul>
           </div>
         </div>
 
-        <div class="forecast" id="forecast">
-        </div>
+        <div class="forecast" id="forecast"></div>
       </div>
-      <div id="author"> <a href="https://github.com/MarynaMarkova/Weather-app" class="profileLink">Open-source code</a> by <a href="https://www.linkedin.com/in/maryna-markova/" class="profileLink">Maryna Markova</a> </div>
+      <div id="author">
+        <a
+          href="https://github.com/MarynaMarkova/Weather-app"
+          class="profileLink"
+          >Open-source code</a
+        >
+        by
+        <a
+          href="https://www.linkedin.com/in/maryna-markova/"
+          class="profileLink"
+          >Maryna Markova</a
+        >
+      </div>
     </div>
-    <script src = "src/index.js"></script>
+    <script src="src/index.js"></script>
   </body>
 </html>
 
