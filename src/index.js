@@ -1,3 +1,7 @@
+// 1. resolve the problem with current location and search input in units convertion (innerHTML = "Truskavets'");
+// 2. fix the units in "feels like" and wind-speed during conversion
+// 3. test and fix wind speed in km/h and miles/hour.
+
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#cityInput").value;
